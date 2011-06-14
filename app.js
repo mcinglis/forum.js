@@ -14,10 +14,10 @@ app.configure(function(){
 });
 
 // set up the RESTful API, handler methods are defined in thread.js
-var thread = require('./controllers/thread.js');
-app.post('/thread', thread.post);
-app.get('/thread/:title.:format?', thread.show);
-app.get('/thread', thread.list);
+var api = require('./controllers/api.js');
+app.post('/thread', api.post);
+app.get('/thread/:title.:format?', api.show);
+app.get('/thread', api.list);
 
 app.listen(3000);
 console.log("Express server listening on port %d", app.address().port);
