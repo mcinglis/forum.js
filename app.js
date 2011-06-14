@@ -1,0 +1,23 @@
+// The main application script, ties everything together.
+
+var express = require('express');
+var mongoose = require('mongoose');
+var app = module.exports = express.createServer();
+
+// connect to Mongo when the app initializes
+mongoose.connect('mongodb://localhost/norum');
+
+app.configure(function(){
+  app.use(express.bodyParser());
+  app.use(express.methodOverride());
+  app.use(app.router);
+});
+
+// set up the RESTful API, handler methods are defined in thread.js
+var thread = require('./controllers/thread.js');
+app.post('/thread', thread.post);
+app.get('/thread/:title.:format?', thread.show);
+app.get('/thread', thread.list);
+
+app.listen(3000);
+console.log("Express server listening on port %d", app.address().port);
