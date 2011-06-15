@@ -14,9 +14,9 @@ exports.post = function(req, res) {
 }
 
 exports.list = function(req, res) {
-	Thread.find(function(err, threads) {
-		res.send(threads);
-	});
+  Thread.find(function(err, threads) {
+    res.send(threads);
+  });
 }
 
 // first locates a thread by title, then locates the replies by thread ID.
